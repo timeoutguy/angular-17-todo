@@ -4,4 +4,9 @@
       <app-todo-card [todo]="todo"></app-todo-card>
     }
   </div>
+  @if (store.filteredTodos().length <= 0) {
+    <div class="text-center mt-4">
+      <p class="text-gray-500">No todos found</p>
+    </div>
+  }
 </div>

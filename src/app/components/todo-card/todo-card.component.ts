@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { octPencil, octX } from '@ng-icons/octicons';
 import { Todo } from '../../models/todo.model';
+import { TodosStore } from '../../stores/todos.store';
 
 @Component({
   selector: 'app-todo-card',
@@ -13,4 +14,6 @@ import { Todo } from '../../models/todo.model';
 })
 export class TodoCardComponent {
   @Input() todo: Todo | undefined;
+
+  readonly store = inject(TodosStore);
 }

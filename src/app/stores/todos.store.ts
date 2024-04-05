@@ -37,6 +37,12 @@ export const TodosStore = signalStore(
   withMethods((store) => ({
     updateFilter(filter: "all" | "completed" | "active"): void {
       patchState(store, { filter })
+    },
+    markAllAsCompleted(): void {
+      patchState(store, { todos: store.todos().map(todo => ({ ...todo, completed: true })) })
+    },
+    deleteTodoById(id: number): void {
+      patchState(store, { todos: store.todos().filter(todo => todo.id !== id) })
     }
   })
   )

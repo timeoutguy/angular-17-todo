@@ -5,7 +5,7 @@
       <div class="bg-blue-400 rounded-full p-1 flex">
         <ng-icon name="octPencil" />
       </div>
-      <div class="bg-red-500 rounded-full p-1 flex">
+      <div class="bg-red-500 rounded-full p-1 flex" (click)="store.deleteTodoById(todo?.id)">
         <ng-icon name="octX" />
       </div>
     </div>
