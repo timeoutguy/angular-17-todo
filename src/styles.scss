@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply rounded-lg p-2 font-medium;
+
+  &.btn-primary {
+    @apply bg-blue-500 text-white;
+  }
+
+  &.btn-secondary {
+    @apply bg-gray-500 text-white;
+  }
+
+  &.btn-danger {
+    @apply bg-red-500 text-white;
+  }
+
+  &.btn-success {
+    @apply bg-green-500 text-white;
+  }
+
+  &.btn-warning {
+    @apply bg-yellow-500 text-white;
+  }
+
+  &.btn-disabled {
+    @apply bg-gray-300 text-gray-500 cursor-not-allowed;
+  }
+
+  &.btn-lg {
+    @apply text-lg p-4;
+  }
+
+  &.btn-sm {
+    @apply text-sm p-1;
+  }
+}
+
+select {
+  @apply rounded-md p-2 font-medium bg-gray-200;
+}
