@@ -1,16 +1,23 @@
 <div class="card">
   <div class="card-header w-full bg-slate-700 p-2 flex justify-between">
-    <p class="text-white font-bold"> {{ todo?.title }}</p>
+    <p class="text-white font-bold"> {{ todo.title }}</p>
     <div class="flex gap-1 text-white">
-      <div class="bg-blue-400 rounded-full p-1 flex">
+      <div
+        class="action-button"
+        [ngClass]="{ 'bg-green-500 hover:bg-gray-500': todo.completed, 'bg-gray-500 hover:bg-green-500': !todo.completed }"
+        (click)="store.toggleTodoById(todo.id)"
+      >
+        <ng-icon name="octCheck" />
+      </div>
+      <div class="action-button bg-blue-400 hover:bg-blue-700 transition-all duration-300">
         <ng-icon name="octPencil" />
       </div>
-      <div class="bg-red-500 rounded-full p-1 flex" (click)="store.deleteTodoById(todo?.id)">
+      <div class="action-button bg-red-500 hover:bg-red-700" (click)="store.deleteTodoById(todo.id)">
         <ng-icon name="octX" />
       </div>
     </div>
   </div>
   <div class="w-full border-2 border-slate-700 p-2">
-    <p class="mb-4"> {{ todo?.text }} </p>
+    <p class="mb-4"> {{ todo.description }} </p>
   </div>
 </div>

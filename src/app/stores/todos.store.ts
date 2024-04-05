@@ -11,15 +11,16 @@ type TodosState = {
 
 const initialState: TodosState = {
   todos: [
-    { id: 1, title: "Learn Angular", text: 'I need to learn more about angular', completed: true },
-    { id: 2, title: "Learn NgRx", text: 'I need to learn more about NgRx', completed: false },
-    { id: 3, title: "Learn RxJS", text: 'I need to learn more about RxJS', completed: false },
+    { id: crypto.randomUUID(), title: "Learn Angular", description: 'I need to learn more about angular', completed: true },
+    { id: crypto.randomUUID(), title: "Learn NgRx", description: 'I need to learn more about NgRx', completed: false },
+    { id: crypto.randomUUID(), title: "Learn RxJS", description: 'I need to learn more about RxJS', completed: false },
   ],
   isLoading: false,
   filter: "all"
 }
 
 export const TodosStore = signalStore(
+  {providedIn: 'root'},
   withState(initialState),
   withComputed(({ todos, filter}) => ({
     filteredTodos: computed(() => {
@@ -41,8 +42,17 @@ export const TodosStore = signalStore(
     markAllAsCompleted(): void {
       patchState(store, { todos: store.todos().map(todo => ({ ...todo, completed: true })) })
     },
-    deleteTodoById(id: number): void {
+    deleteTodoById(id: string): void {
       patchState(store, { todos: store.todos().filter(todo => todo.id !== id) })
+    },
+    toggleTodoById(id: string): void {
+      patchState(store, { todos: store.todos().map(todo => todo.id === id ? { ...todo, completed: !todo.completed } : todo) })
+    },
+    addTodo(todo: Partial<Todo>): void {
+
+      const todoToAdd = { id: crypto.randomUUID(), ...todo, completed: false } as Todo;
+
+      patchState(store, { todos: [...store.todos(), todoToAdd] })
     }
   })
   )

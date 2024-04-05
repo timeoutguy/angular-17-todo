@@ -1,0 +1,21 @@
+<div class="modal">
+  <div class="modal-header">
+    <p> Add ToDo </p>
+  </div>
+  <div>
+    <form [formGroup]="todoFormGroup">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description"></textarea>
+      </div>
+    </form>
+    <div class="flex justify-end">
+      <button class="btn btn-danger mr-2" (click)="dialogRef.close()"> Cancel</button>
+      <button class="btn btn-primary" (click)="saveTodo()"> Save </button>
+    </div>
+  </div>
+</div>
