@@ -27,6 +27,7 @@ export class HomeComponent {
       email: 'marcus@marcus.com',
       password: 'marcus123',
     });
+    this.store.getTodoByUserId(this.userStore.user.id);
   }
   private changeFilterOnStore() {
     this.filterFormControl.valueChanges.subscribe((value) => {

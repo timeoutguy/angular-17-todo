@@ -41,6 +41,8 @@ export const UserStore = signalStore(
                   token: data.token,
                   error: null,
                 })
+
+                localStorage.setItem('token', data.token);
               },
               error: console.error,
               finalize: () => patchState(store, { isLoading: false })
