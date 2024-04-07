@@ -2,24 +2,42 @@
   <div>
     <div class="flex flex-col justify-center items-center">
       <h1 class="text-2xl mb-4">Sign in to ToDoList </h1>
-      <div class="border border-slate-300 flex flex-col p-10 rounded-md">
+      <form [formGroup]="registerFormGroup" class="border border-slate-300 flex flex-col p-10 rounded-md">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input formControlName="name" type="text" id="name" [class.has-error]="checkIfFieldHaserror('name')">
+          @if (checkIfFieldHaserror('name')) {
+            <div class="text-red-500 text-xs mt-1"> Name is invalid </div>
+          }
+        </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email">
+          <input formControlName="email" type="email" id="email" [class.has-error]="checkIfFieldHaserror('email')">
+          @if (checkIfFieldHaserror('email')) {
+            <div class="text-red-500 text-xs mt-1"> Email is invalid </div>
+          }
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" id="password">
+          <input formControlName="password" type="password" id="password" [class.has-error]="checkIfFieldHaserror('password')">
+          @if (checkIfFieldHaserror('password')) {
+            <div class="text-red-500 text-xs mt-1"> Password is invalid </div>
+          }
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirm password</label>
-          <input type="password" id="confirm-password">
+          <input formControlName="confirmPassword" type="password" id="confirm-password" [class.has-error]="!checkIfPasswordsMatch() || checkIfFieldHaserror('confirmPassword')">
+          @if (!checkIfPasswordsMatch()) {
+            <div class="text-red-500 text-xs mt-1"> Password doesn't match </div>
+          }
+          @if (checkIfFieldHaserror('confirmPassword')) {
+            <div class="text-red-500 text-xs mt-1"> Confirm password is invalid </div>
+          }
         </div>
-
         <div class="w-full">
-          <button class="btn btn-success w-full">Sign in</button>
+          <button [disabled]="registerFormGroup.invalid || !checkIfPasswordsMatch()" (click)="onSubmit()" class="btn btn-success w-full">Sign in</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </main>

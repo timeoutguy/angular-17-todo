@@ -73,6 +73,10 @@ $todo-list-theme: mat.define-light-theme((
   &.btn-sm {
     @apply text-sm p-1;
   }
+
+  &:disabled {
+    @apply bg-gray-300 text-gray-500 cursor-not-allowed;
+  }
 }
 
 select {
@@ -106,6 +110,14 @@ select {
 
   input, textarea {
     @apply rounded-md px-2 py-1 border border-slate-300;
+
+    &.has-error {
+      @apply border-red-500;
+
+      &:focus {
+        @apply border-red-500;
+      }
+    }
 
     &:focus {
       @apply border-blue-500;

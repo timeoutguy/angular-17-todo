@@ -12,4 +12,8 @@ export class UserService {
   public login(credentials: any): Observable<UserLoginRequestResponse> {
     return this.http.post<UserLoginRequestResponse>('http://localhost:8000/api/login', credentials)
   }
+
+  public register(credentials: any): Observable<UserLoginRequestResponse> {
+    return this.http.post<UserLoginRequestResponse>('http://localhost:8000/api/register', credentials)
+  }
 }
