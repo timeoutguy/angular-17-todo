@@ -1,7 +1,7 @@
 
 import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { Todo } from "../models/todo.model";
-import { computed, effect } from "@angular/core";
+import { computed } from "@angular/core";
 
 type TodosState = {
   todos: Todo[];
