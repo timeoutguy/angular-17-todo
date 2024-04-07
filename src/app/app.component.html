@@ -1,19 +1,2 @@
 <app-navbar></app-navbar>
-<main class="container mx-auto pt-8">
-  <div class="flex justify-between mb-4">
-    <div>
-      <select [formControl]="filterFormControl">
-        <option value="all">All</option>
-        <option value="active">Active</option>
-        <option value="completed">Completed</option>
-      </select>
-    </div>
-    <div>
-      <button class="btn btn-primary mr-2" (click)="openAddTodoDialog()"> Add Todo </button>
-      <button class="btn btn-success" (click)="store.markAllAsCompleted()">Mark all as done</button>
-    </div>
-  </div>
-  <div>
-    <app-todos />
-  </div>
-</main>
+<router-outlet></router-outlet>
