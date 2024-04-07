@@ -12,7 +12,8 @@ import { UserStore } from '../../stores/user.store';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, TodosComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  providers: []
 })
 export class HomeComponent {
   readonly store = inject(TodosStore);

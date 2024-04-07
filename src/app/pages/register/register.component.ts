@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisterComponent {
   private userService = inject(UserService);
+  private toastService = inject(ToastrService);
 
   public registerFormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -30,8 +32,8 @@ export class RegisterComponent {
 
   public onSubmit(): void {
     if(this.registerFormGroup.valid && this.checkIfPasswordsMatch()) {
-      this.userService.register(this.registerFormGroup.value).subscribe((response) => {
-
+      this.userService.register(this.registerFormGroup.value).subscribe(() => {
+        this.toastService.success('User registered successfully');
       });
     }
   }
