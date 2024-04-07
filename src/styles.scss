@@ -40,7 +40,7 @@ $todo-list-theme: mat.define-light-theme((
 @tailwind utilities;
 
 .btn {
-  @apply rounded-lg p-2 font-medium;
+  @apply rounded-lg px-4 py-2 font-medium;
 
   &.btn-primary {
     @apply bg-blue-500 text-white;
