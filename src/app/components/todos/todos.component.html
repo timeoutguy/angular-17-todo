@@ -11,4 +11,9 @@
       <ngx-skeleton-loader count="5"></ngx-skeleton-loader>
     </div>
   }
+  @if (store.filteredTodos().length <= 0 && !store.isLoading()) {
+    <div class="w-full text-center text-gray-500">
+      No todos found
+    </div>
+  }
 </div>
