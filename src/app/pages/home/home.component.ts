@@ -23,11 +23,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.changeFilterOnStore();
-    this.userStore.login({
-      email: 'marcus@marcus.com',
-      password: 'marcus123',
-    });
-    this.store.getTodoByUserId(this.userStore.user.id);
+    // this.store.getTodoByUserId(this.userStore.user.id);
   }
   private changeFilterOnStore() {
     this.filterFormControl.valueChanges.subscribe((value) => {

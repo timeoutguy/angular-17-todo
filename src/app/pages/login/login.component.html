@@ -1,0 +1,26 @@
+<main class="container mx-auto pt-8">
+  <div>
+    <div class="flex flex-col justify-center items-center">
+      <h1 class="text-2xl mb-4">Sign in to ToDoList </h1>
+      <form [formGroup]="loginFormGroup" class="border border-slate-300 flex flex-col p-10 rounded-md">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input formControlName="email" type="email" id="email" [class.has-error]="checkIfFieldHaserror('email')">
+          @if (checkIfFieldHaserror('email')) {
+            <div class="text-red-500 text-xs mt-1"> Email is invalid </div>
+          }
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input formControlName="password" type="password" id="password" [class.has-error]="checkIfFieldHaserror('password')">
+          @if (checkIfFieldHaserror('password')) {
+            <div class="text-red-500 text-xs mt-1"> Password is invalid </div>
+          }
+        </div>
+        <div class="w-full">
+          <button (click)="onSubmit()" [disabled]="loginFormGroup.invalid || userStore.isLoading()" class="btn btn-success w-full">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
