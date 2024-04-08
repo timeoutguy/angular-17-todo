@@ -5,6 +5,8 @@ import { inject } from "@angular/core";
 import { UserService } from "../services/user.service";
 import { distinctUntilChanged, pipe, switchMap, tap } from "rxjs";
 import { tapResponse } from "@ngrx/operators";
+import { StorageService } from "../services/storage.service";
+import { Router } from "@angular/router";
 
 type UserState = {
   user: User;
@@ -27,7 +29,12 @@ const initialState: UserState = {
 export const UserStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store, userService = inject(UserService)) => ({
+  withMethods((
+    store,
+    userService = inject(UserService),
+    storageService = inject(StorageService),
+    router = inject(Router)
+  ) => ({
     login: rxMethod<any>(
       pipe(
         distinctUntilChanged(),
@@ -42,7 +49,10 @@ export const UserStore = signalStore(
                   error: null,
                 })
 
-                localStorage.setItem('token', data.token);
+                storageService.setToken(data.token)
+                storageService.setUser(data.user)
+
+                router.navigate([ '/'])
               },
               error: console.error,
               finalize: () => patchState(store, { isLoading: false })
@@ -50,6 +60,12 @@ export const UserStore = signalStore(
           )
         })
       )
-    )
+    ),
+    updateUser(user: User) {
+      patchState(store, { user });
+    },
+    updateToken(token: string) {
+      patchState(store, { token });
+    }
   }))
 )

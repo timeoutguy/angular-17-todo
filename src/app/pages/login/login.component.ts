@@ -21,7 +21,6 @@ export class LoginComponent {
 
   public checkIfFieldHaserror(fieldName: string): boolean {
     const field = this.loginFormGroup.get(fieldName);
-    console.log(field);
     return field?.invalid && field?.touched ? true : false;
   }
 
